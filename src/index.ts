@@ -1,10 +1,10 @@
 import {isStructurallyValidLanguageTag, parseUnicodeLanguageId} from "@formatjs/intl-getcanonicallocales";
 import * as languageData from 'cldr-core/supplemental/languageData.json'
 import * as territoryInfoData from 'cldr-core/supplemental/territoryInfo.json'
-import {languageTerritoryOrders} from "./languageTerritoryOrder";
+import {languageTerritoryOrder} from "./languageTerritoryOrder";
 
 
-export const getLanguageRegionsData = (locale: string): string[] => {
+export const getLanguageRegions = (locale: string): string[] => {
     const parsed = parseUnicodeLanguageId(locale)
     if (parsed.region) {
         return [parsed.region]
@@ -21,11 +21,6 @@ export const getLanguageRegionsData = (locale: string): string[] => {
     }
 
     return []
-}
-
-export const getLanguageInfo = (tag: string) => {
-    const dn = new (Intl as any).DisplayNames("en", {type: "language", style: "long"})
-    return dn.of("cs-CZ")
 }
 
 export const isValidLanguageTag = (tag: string) => {
@@ -47,7 +42,7 @@ function getTerritoriesLanguagePopulations(territories: (keyof typeof info)[], l
 }
 
 const sortTerritoriesByLanguage = (territories: (keyof typeof territoryInfoData.supplemental.territoryInfo)[], language: string): string[] => {
-    const customOrder = (languageTerritoryOrders as any)[language] || [] as string[]
+    const customOrder = (languageTerritoryOrder as any)[language] || [] as string[]
     territories = territories.filter(t => customOrder.indexOf(t) === -1)
     const territoriesLanguagePopulation = getTerritoriesLanguagePopulations(territories, language);
 
@@ -97,11 +92,6 @@ const sortTerritoriesByLanguage = (territories: (keyof typeof territoryInfoData.
     })
 
     return [...customOrder, ...territories]
-}
-
-export interface LanguageInfo {
-    englishName: string,
-    originalName: string
 }
 
 interface TerritoryInfo {
