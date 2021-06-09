@@ -1,8 +1,4 @@
 export const languageTerritoryOrder = {
-    en: [
-        "GB", "US"
-    ],
-    es: [
-        "ES"
-    ]
-}
+  en: ['GB', 'US'],
+  es: ['ES'],
+};

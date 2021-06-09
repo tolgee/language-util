@@ -11,3 +11,7 @@ declare module 'download-git-repo' {
     export default function download(repo: string, dest: string, opts: { [key: string]: any }, fn: (err: string) => void): void
     export default function download(repo: string, dest: string, fn: (err: string) => void): void
 }
+
+declare module 'latinize' {
+    export default function (input: string): string
+}

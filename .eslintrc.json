@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "node_modules",
+    "*.d.ts"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "jest"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "JSX": true,
+    "Proxy": true,
+    "RequestInfo": true,
+    "RequestInit": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "prettier/prettier": "error"
+  }
+}
