@@ -22,8 +22,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./webapp
 
       - name: Eslint
         run: npm run eslint
-        working-directory: ./webapp
+
+      - name: Generate Language info
+        run: npm run generateLanguageInfo
+
+      - name: Generate flags
+        run: npm run generateFlags
+
+      - name: Test
+        run: npm run test
