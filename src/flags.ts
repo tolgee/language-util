@@ -14,9 +14,8 @@ export const symbolToHex = function (str: string) {
 };
 
 export const getSvgNameByEmoji = (emoji: string) => {
-  const hex = symbolToHex(emoji);
-  if (supportedFlags.indexOf(hex) < 0) {
+  if (supportedFlags.indexOf(emoji) < 0) {
     throw new Error('Flag is not supported');
   }
-  return hex;
+  return symbolToHex(emoji);
 };

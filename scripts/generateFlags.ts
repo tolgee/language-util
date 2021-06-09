@@ -5,18 +5,26 @@ import path from 'path';
 import { symbolToHex } from '../src/flags';
 
 const DOWNLOAD_PATH = 'tmp/twemoji';
+const ADDITIONAL_FLAGS = ['🏁'];
 
-const flags = new Set() as Set<string>;
+const flagsHex = new Set() as Set<string>;
+const flagsEmoji = new Set() as Set<string>;
 
 Object.values(languageInfo).forEach((i) => {
   i.flags.forEach((f) => {
-    flags.add(symbolToHex(f));
+    flagsHex.add(symbolToHex(f));
+    flagsEmoji.add(f);
   });
+});
+
+ADDITIONAL_FLAGS.forEach((f) => {
+  flagsHex.add(symbolToHex(f));
+  flagsEmoji.add(f);
 });
 
 const generate = (err: string) => {
   if (!err) {
-    flags.forEach((f) => {
+    flagsHex.forEach((f) => {
       try {
         fs.copyFileSync(
           path.resolve(DOWNLOAD_PATH + '/assets/svg/' + f + '.svg'),
@@ -29,7 +37,7 @@ const generate = (err: string) => {
     });
 
     const content =
-      'export const supportedFlags = ' + JSON.stringify([...flags]);
+      'export const supportedFlags = ' + JSON.stringify([...flagsEmoji]);
     fs.writeFileSync(path.resolve('src/generated/supportedFlags.ts'), content);
   }
 };
