@@ -18,15 +18,15 @@ describe('suggesting', () => {
   });
 
   test('it suggest for original name', () => {
-    expect(suggest('češ')[0].englishName).toEqual('Czech');
+    expect(suggest('češ')[0].englishName).toContain('Czech');
   });
 
   test('it suggest for english name', () => {
-    expect(suggest('Czech')[0].englishName).toEqual('Czech');
+    expect(suggest('Czech')[0].englishName).toContain('Czech');
   });
 
   test('it ignores case', () => {
-    expect(suggest('czech')[0].englishName).toEqual('Czech');
+    expect(suggest('czech')[0].englishName).toContain('Czech');
   });
 
   test('it ignores latin', () => {

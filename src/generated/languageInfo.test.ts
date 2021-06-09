@@ -19,7 +19,7 @@ describe('generated info', () => {
     });
   });
 
-  test('returns correct language info for en_US', () => {
+  test('returns correct language info for en-US', () => {
     const result = languageInfo['en-US'];
     expect(result?.englishName).toEqual('English (United States)');
     expect(result?.originalName).toEqual('English (United States)');
@@ -28,7 +28,7 @@ describe('generated info', () => {
   });
 
   test('returns correct language info for cs', () => {
-    const result = languageInfo['en-US'];
+    const result = languageInfo['cs'];
     expect(result?.englishName).toEqual('Czech');
     expect(result?.originalName).toEqual('čeština');
     expect(result?.regions).toEqual(['CZ']);

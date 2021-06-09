@@ -566,11 +566,10 @@ import '@formatjs/intl-displaynames/locale-data/zh-Hant-MO';
 import '@formatjs/intl-displaynames/locale-data/zh-Hant';
 import '@formatjs/intl-displaynames/locale-data/zh';
 import '@formatjs/intl-displaynames/locale-data/zu';
-import { getLanguageRegions } from '../../src';
 import { getCountryFlagEmoji } from '../../src/flags';
 import * as availableLanguages from 'cldr-core/availableLocales.json';
 import * as defaultContent from 'cldr-core/defaultContent.json';
-import { getLanguagePopulation } from '../../src/languages';
+import { getLanguagePopulation, getLanguageRegions } from '../../src/languages';
 
 export interface LanguageInfo {
   englishName: string;

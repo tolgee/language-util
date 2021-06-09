@@ -243,4 +243,7 @@ export const supportedFlags = [
   '1f1fb-1f1f3',
   '1f1f9-1f1fc',
   '1f1e8-1f1f3',
+  '1f1e7-1f1f9',
+  '1f1eb-1f1f4',
+  '1f1f9-1f1ef',
 ];

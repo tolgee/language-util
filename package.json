@@ -17,6 +17,10 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release"
   },
+  "files": [
+    "./lib/**",
+    "./flags/**"
+  ],
   "author": "Jan Cizmar",
   "license": "MIT",
   "devDependencies": {

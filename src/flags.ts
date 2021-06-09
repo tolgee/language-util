@@ -1,4 +1,5 @@
 import countryFlagEmoji from 'country-flag-emoji';
+import { supportedFlags } from './generated/supportedFlags';
 
 export const getCountryFlagEmoji = (country: string): string | undefined => {
   return countryFlagEmoji.get(country)?.emoji;
@@ -10,4 +11,12 @@ export const symbolToHex = function (str: string) {
     parts.push(str.codePointAt(i)?.toString(16));
   }
   return parts.join('-');
+};
+
+export const getSvgNameByEmoji = (emoji: string) => {
+  const hex = symbolToHex(emoji);
+  if (supportedFlags.indexOf(hex) < 0) {
+    throw new Error('Flag is not supported');
+  }
+  return hex;
 };
