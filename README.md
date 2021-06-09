@@ -40,5 +40,5 @@ console.log(suggest('cs'));
 import { isValidLanguageTag } from '@tginternal/language-util';
 
 isValidLanguageTag("cs-CZ") //true
-isValidLanguageTag("cs-CZ") //false
+isValidLanguageTag("cs_CZ") //false
 ```
