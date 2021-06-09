@@ -3,7 +3,10 @@
   "version": "0.0.0-development",
   "description": "Language information utility for Tolgee localization tool.",
   "main": "lib/index.js",
-  "declarations": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "test": "jest",
     "generateLanguageInfo": "ts-node --files scripts/generateLanguageInfo.ts",

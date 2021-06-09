@@ -1,7 +1,6 @@
 import { getCountryFlagEmoji, symbolToHex } from './flags';
 import * as availableLocales from 'cldr-core/availableLocales.json';
-import { getLanguageRegions } from './index';
-import { languageInfo } from './generated/languageInfo';
+import { getLanguageRegions } from './languages';
 
 describe('flags', () => {
   test('returns correct flag for CZ', () => {
