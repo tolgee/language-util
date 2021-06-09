@@ -1,4 +1,4 @@
-# Language utl
+# Language util
 
 ## Suggesting
 
@@ -12,12 +12,25 @@ console.log(suggest('cs'));
 
 ```typescript
 [
-  {
-    englishName: 'Czech',
-    flags: ['🇨🇿'],
-    languageId: 'cs',
-    originalName: 'čeština',
-  },
+    {
+        englishName: 'Czech',
+        flags: ['🇨🇿'],
+        languageId: 'cs',
+        originalName: 'čeština',
+    },
+    {
+        englishName: "Czech (Czechia)",
+        flags: ["🇨🇿"],
+        languageId: "cs-CZ",
+        originalName: "čeština (Česko)"
+    },
+    {
+        englishName: "English",
+        flags: (89) ["🇬🇧", "🇺🇸", ...],
+        languageId: "en",
+        originalName: "English"
+    }
+    ...
 ];
 ```
 
