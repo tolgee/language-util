@@ -1,27 +1,6 @@
-import { getCountryFlagEmoji, getSvgNameByEmoji, symbolToHex } from './flags';
-import * as availableLocales from 'cldr-core/availableLocales.json';
-import { getLanguageRegions } from './languages';
+import { getSvgNameByEmoji, symbolToHex } from './flags';
 
 describe('flags', () => {
-  test('returns correct flag for CZ', () => {
-    const flag = getCountryFlagEmoji('CZ');
-    expect(flag).toEqual('🇨🇿');
-  });
-
-  test('returns flags for available locales', () => {
-    const result = availableLocales.availableLocales.modern.reduce(
-      (acc, curr) => ({
-        ...acc,
-        [curr]: getLanguageRegions(curr as any).map((r) =>
-          getCountryFlagEmoji(r)
-        ),
-      }),
-      {}
-    ) as { [key: string]: any };
-    expect(result['en'][0]).toEqual('🇬🇧');
-    expect(result['en'][1]).toEqual('🇺🇸');
-  });
-
   test('returns correct symbol to hex', () => {
     expect(symbolToHex('🇬🇧')).toEqual('1f1ec-1f1e7');
     expect(symbolToHex('🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿')).toEqual(

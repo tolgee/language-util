@@ -1,9 +1,4 @@
-import countryFlagEmoji from 'country-flag-emoji';
 import { supportedFlags } from './generated/supportedFlags';
-
-export const getCountryFlagEmoji = (country: string): string | undefined => {
-  return countryFlagEmoji.get(country)?.emoji;
-};
 
 export const symbolToHex = function (str: string) {
   const parts = [];

@@ -566,7 +566,6 @@ import '@formatjs/intl-displaynames/locale-data/zh-Hant-MO';
 import '@formatjs/intl-displaynames/locale-data/zh-Hant';
 import '@formatjs/intl-displaynames/locale-data/zh';
 import '@formatjs/intl-displaynames/locale-data/zu';
-import { getCountryFlagEmoji } from '../../src/flags';
 import * as availableLanguages from 'cldr-core/availableLocales.json';
 import * as defaultContent from 'cldr-core/defaultContent.json';
 import {
@@ -578,6 +577,7 @@ import { parseUnicodeLanguageId } from '@formatjs/intl-getcanonicallocales';
 import * as languageData from 'cldr-core/supplemental/languageData.json';
 import * as territoryInfoData from 'cldr-core/supplemental/territoryInfo.json';
 import { languageTerritoryOrder } from '../../src/languageTerritoryOrder';
+import countryFlagEmoji from 'country-flag-emoji';
 
 export interface LanguageInfo {
   englishName: string;
@@ -796,4 +796,8 @@ const getTerritoriesLanguagePopulations = (
     }
   });
   return territoriesLanguagePopulation;
+};
+
+const getCountryFlagEmoji = (country: string): string | undefined => {
+  return countryFlagEmoji.get(country)?.emoji;
 };
