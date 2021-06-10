@@ -46,4 +46,55 @@ describe('generated info', () => {
       expect(i).toBeTruthy();
     });
   });
+
+  describe('languages', () => {
+    test('returns correct language population', () => {
+      const population = languageInfo['en'].population;
+      expect(population).toBeGreaterThan(1000000000);
+    });
+
+    test('returns correct language cs', () => {
+      const population = languageInfo['cs'].population;
+      expect(population).toBeGreaterThan(9000000);
+    });
+
+    test('returns correct language cs-CZ', () => {
+      const population = languageInfo['cs-CZ'].population;
+      expect(population).toBeGreaterThan(9000000);
+    });
+
+    test('returns correct language zh-Hans', () => {
+      const population = languageInfo['zh-Hans'].population;
+      expect(population).toBeGreaterThan(9000000);
+    });
+
+    test('returns territory by language', () => {
+      const territories = languageInfo['cs'].regions;
+      expect(territories).toEqual(['CZ']);
+    });
+
+    test('returns territory from parsed region', () => {
+      const territories = languageInfo['en-US'].regions;
+      expect(territories).toEqual(['US']);
+    });
+
+    test('returns correct territories for english', () => {
+      const territories = languageInfo['en'].regions;
+      expect(territories.length).toEqual(89);
+      expect(territories[0]).toEqual('GB');
+      expect(territories[1]).toEqual('US');
+    });
+
+    test('returns territories for spanish', () => {
+      const territories = languageInfo['es'].regions;
+      expect(territories.length).toEqual(23);
+      expect(territories[0]).toEqual('ES');
+    });
+
+    test('returns territories for french', () => {
+      const territories = languageInfo['fr'].regions;
+      expect(territories.length).toEqual(45);
+      expect(territories[0]).toEqual('FR');
+    });
+  });
 });

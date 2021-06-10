@@ -12,7 +12,9 @@ describe('flags', () => {
     const result = availableLocales.availableLocales.modern.reduce(
       (acc, curr) => ({
         ...acc,
-        [curr]: getLanguageRegions(curr).map((r) => getCountryFlagEmoji(r)),
+        [curr]: getLanguageRegions(curr as any).map((r) =>
+          getCountryFlagEmoji(r)
+        ),
       }),
       {}
     ) as { [key: string]: any };
