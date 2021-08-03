@@ -1,4 +1,5 @@
-import { suggest } from './suggesting';
+import { compare, getItemWithPopulation, suggest } from './suggesting';
+import { languageInfo } from './generated/languageInfo';
 
 describe('suggesting', () => {
   test('it suggest with empty string', () => {
@@ -36,5 +37,17 @@ describe('suggesting', () => {
   test('it orders by diffLength', () => {
     const suggestions = suggest('est');
     expect(suggestions[1].languageId).toEqual('et');
+  });
+
+  test('it orders by population', () => {
+    const suggestions = suggest('it');
+    expect(suggestions[0].languageId).toEqual('it');
+    expect(suggestions[1].languageId).toEqual('it-IT');
+  });
+
+  test('it orders by population', () => {
+    const suggestions = suggest('it');
+    expect(suggestions[0].languageId).toEqual('it');
+    expect(suggestions[1].languageId).toEqual('it-IT');
   });
 });

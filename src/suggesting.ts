@@ -8,16 +8,39 @@ export type SuggestResult = {
   flags: string[];
 };
 
+export type SuggestResultWithPopulation = SuggestResult & {
+  population?: number;
+};
+
 export const suggest = (input: string, limit = 10): SuggestResult[] => {
-  const result = Object.entries(languageInfo).map(([languageId, value]) => ({
-    languageId: languageId,
+  const result = Object.entries(languageInfo).map(([languageId, value]) =>
+    getItemWithPopulation(languageId, value)
+  );
+
+  input = latinize(input).replace('_', '-').toLowerCase();
+  result.sort(compare(input));
+  return result.slice(0, limit).map((i) => {
+    delete i.population;
+    return i;
+  });
+};
+
+export const getItemWithPopulation = (
+  languageId: string,
+  value: typeof languageInfo[keyof typeof languageInfo]
+): SuggestResultWithPopulation => {
+  return {
+    languageId: languageId as keyof typeof languageInfo,
     originalName: value.originalName,
     englishName: value.englishName,
     flags: value.flags,
-  })) as (SuggestResult & { population: number })[];
+    population: value.population,
+  };
+};
 
-  input = latinize(input).replace('_', '-').toLowerCase();
-  result.sort((a, b) => {
+export const compare =
+  (input: string) =>
+  (a: SuggestResultWithPopulation, b: SuggestResultWithPopulation) => {
     const aNormalized = normalizeResult(a);
     const bNormalized = normalizeResult(b);
     if (
@@ -61,6 +84,16 @@ export const suggest = (input: string, limit = 10): SuggestResult[] => {
       return 1;
     }
 
+    //if both tags start with user input, let population win, since tags are short and result is then more relevant
+    if (
+      aNormalized.languageId.indexOf(input) === 0 &&
+      bNormalized.languageId.indexOf(input) === 0 &&
+      bNormalized.population &&
+      aNormalized.population
+    ) {
+      return bNormalized.population - aNormalized.population;
+    }
+
     const samePartDifferences = {
       englishName:
         samePartLength(bNormalized.englishName, input) -
@@ -89,14 +122,11 @@ export const suggest = (input: string, limit = 10): SuggestResult[] => {
       languageInfo[b.languageId].population -
       languageInfo[a.languageId].population
     );
-  });
-
-  return result.slice(0, limit);
-};
+  };
 
 const normalizeResult = (
-  result: SuggestResult
-): Omit<SuggestResult, 'languageId'> & { languageId: string } => {
+  result: SuggestResultWithPopulation
+): Omit<SuggestResultWithPopulation, 'languageId'> & { languageId: string } => {
   return {
     ...result,
     originalName: latinize(result.originalName).toLowerCase(),
