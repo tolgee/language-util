@@ -5,7 +5,7 @@ import path from 'path';
 import { symbolToHex } from '../src/flags';
 
 const DOWNLOAD_PATH = 'tmp/twemoji';
-const ADDITIONAL_FLAGS = ['🏁'];
+const ADDITIONAL_FLAGS = ['🏁', '🏳️'];
 
 const flagsHex = new Set() as Set<string>;
 const flagsEmoji = new Set() as Set<string>;
@@ -26,8 +26,16 @@ const generate = (err: string) => {
   if (!err) {
     flagsHex.forEach((f) => {
       try {
+        const customPath: string = path.resolve('./customFlags/' + f + '.svg');
+        const twitterPath: string = path.resolve(
+          DOWNLOAD_PATH + '/assets/svg/' + f + '.svg'
+        );
+        const resultPath: string = fs.existsSync(customPath)
+          ? customPath
+          : twitterPath;
+
         fs.copyFileSync(
-          path.resolve(DOWNLOAD_PATH + '/assets/svg/' + f + '.svg'),
+          path.resolve(resultPath),
           path.resolve('flags/' + f + '.svg')
         );
       } catch (e) {
