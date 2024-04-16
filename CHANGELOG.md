@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/tolgee/language-util/compare/v1.0.7...v1.1.0) (2024-04-16)
+
+
+### Features
+
+* new build system ([4c7df67](https://github.com/tolgee/language-util/commit/4c7df67c8dfc0baac921faf909e3ccf109065423))
+
 ## [1.0.7](https://github.com/tolgee/language-util/compare/v1.0.6...v1.0.7) (2024-04-16)
 
 ### Bug Fixes
