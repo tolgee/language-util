@@ -27,7 +27,7 @@ export const suggest = (input: string, limit = 10): SuggestResult[] => {
 
 export const getItemWithPopulation = (
   languageId: string,
-  value: typeof languageInfo[keyof typeof languageInfo]
+  value: (typeof languageInfo)[keyof typeof languageInfo]
 ): SuggestResultWithPopulation => {
   return {
     languageId: languageId as keyof typeof languageInfo,

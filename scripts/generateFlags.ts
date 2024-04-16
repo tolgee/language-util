@@ -3,28 +3,32 @@ import { languageInfo } from '../src/generated/languageInfo';
 import * as fs from 'fs';
 import path from 'path';
 import { symbolToHex } from '../src/flags';
+import { format } from 'prettier';
 
 const DOWNLOAD_PATH = 'tmp/twemoji';
 const ADDITIONAL_FLAGS = ['🏁', '🏳️'];
 
-const flagsHex = new Set() as Set<string>;
-const flagsEmoji = new Set() as Set<string>;
+const flagsSet = new Set() as Set<string>;
 
 Object.values(languageInfo).forEach((i) => {
   i.flags.forEach((f) => {
-    flagsHex.add(symbolToHex(f));
-    flagsEmoji.add(f);
+    flagsSet.add(f);
   });
 });
 
 ADDITIONAL_FLAGS.forEach((f) => {
-  flagsHex.add(symbolToHex(f));
-  flagsEmoji.add(f);
+  flagsSet.add(f);
 });
 
+const flagsEmoji = [...flagsSet];
+const flagsHex = flagsEmoji.map(symbolToHex);
+
 const generate = (err: string) => {
+  if (!fs.existsSync('./flags')) {
+    fs.mkdirSync('./flags');
+  }
   if (!err) {
-    flagsHex.forEach((f) => {
+    flagsHex.forEach((f, i) => {
       try {
         const customPath: string = path.resolve('./customFlags/' + f + '.svg');
         const twitterPath: string = path.resolve(
@@ -46,7 +50,14 @@ const generate = (err: string) => {
 
     const content =
       'export const supportedFlags = ' + JSON.stringify([...flagsEmoji]);
-    fs.writeFileSync(path.resolve('src/generated/supportedFlags.ts'), content);
+    const formattedContent = format(content, {
+      parser: 'typescript',
+      singleQuote: true,
+    });
+    fs.writeFileSync(
+      path.resolve('src/generated/supportedFlags.ts'),
+      formattedContent
+    );
   }
 };
 
