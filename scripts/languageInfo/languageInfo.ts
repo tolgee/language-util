@@ -699,6 +699,19 @@ export const getLanguageRegions = (locale: string): string[] => {
   return [];
 };
 
+const OFFICIALITY_ORDER = [
+  undefined,
+  'official_regional',
+  'de_facto_official',
+  'official',
+] as const;
+
+type Officiality = (typeof OFFICIALITY_ORDER)[number];
+
+function compareOfficiality(a: Officiality, b: Officiality) {
+  return OFFICIALITY_ORDER.indexOf(b) - OFFICIALITY_ORDER.indexOf(a);
+}
+
 const sortTerritoriesByLanguage = (
   territories: (keyof typeof territoryInfoData.supplemental.territoryInfo)[],
   language: string
@@ -714,36 +727,13 @@ const sortTerritoriesByLanguage = (
   territories.sort((a, b) => {
     const aOfficialStatus = territoriesLanguagePopulation[a]?._officialStatus;
     const bOfficialStatus = territoriesLanguagePopulation[b]?._officialStatus;
-    if (
-      (aOfficialStatus == 'official' ||
-        aOfficialStatus == 'de_facto_official') &&
-      bOfficialStatus != 'official' &&
-      bOfficialStatus !== 'de_facto_official'
-    ) {
-      return -1;
-    }
 
-    if (
-      (bOfficialStatus == 'official' ||
-        bOfficialStatus == 'de_facto_official') &&
-      aOfficialStatus != 'official' &&
-      aOfficialStatus !== 'de_facto_official'
-    ) {
-      return -1;
-    }
-
-    if (
-      aOfficialStatus == 'official_regional' &&
-      bOfficialStatus != 'official_regional'
-    ) {
-      return -1;
-    }
-
-    if (
-      bOfficialStatus == 'official_regional' &&
-      aOfficialStatus != 'official_regional'
-    ) {
-      return 1;
+    const statusComparison = compareOfficiality(
+      aOfficialStatus,
+      bOfficialStatus
+    );
+    if (statusComparison !== 0) {
+      return statusComparison;
     }
 
     const aPercent = territoriesLanguagePopulation[a]?._populationPercent;

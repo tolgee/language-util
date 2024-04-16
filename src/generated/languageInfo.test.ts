@@ -96,5 +96,10 @@ describe('generated info', () => {
       expect(territories.length).toEqual(45);
       expect(territories[0]).toEqual('FR');
     });
+
+    test('returns territories for chinese', () => {
+      const territories = languageInfo['zh'].regions;
+      expect(territories[0]).toEqual('CN');
+    });
   });
 });

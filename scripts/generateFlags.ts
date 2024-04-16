@@ -3,6 +3,7 @@ import { languageInfo } from '../src/generated/languageInfo';
 import * as fs from 'fs';
 import path from 'path';
 import { symbolToHex } from '../src/flags';
+import { format } from 'prettier';
 
 const DOWNLOAD_PATH = 'tmp/twemoji';
 const ADDITIONAL_FLAGS = ['🏁', '🏳️'];
@@ -46,7 +47,14 @@ const generate = (err: string) => {
 
     const content =
       'export const supportedFlags = ' + JSON.stringify([...flagsEmoji]);
-    fs.writeFileSync(path.resolve('src/generated/supportedFlags.ts'), content);
+    const formattedContent = format(content, {
+      parser: 'typescript',
+      singleQuote: true,
+    });
+    fs.writeFileSync(
+      path.resolve('src/generated/supportedFlags.ts'),
+      formattedContent
+    );
   }
 };
 
