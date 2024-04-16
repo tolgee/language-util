@@ -13,8 +13,8 @@
     "generateFlags": "ts-node --files scripts/generateFlags.ts",
     "prettier": "prettier --write ./src ./scripts",
     "eslint": "eslint --ext .ts --ext .tsx --max-warnings 0 .",
-    "build": "tsc --p tsconfig.build.json",
-    "prepare": "husky install",
+    "build": "npm run generateLanguageInfo && npm run generateFlags && npm run tsc",
+    "tsc": "tsc --p tsconfig.build.json",
     "release": "semantic-release"
   },
   "files": [
@@ -39,7 +39,6 @@
     "eslint": "^7.28.0",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^6.0.0",
     "jest": "^27.0.4",
     "prettier": "^2.8.8",
     "pretty-quick": "^3.1.0",
