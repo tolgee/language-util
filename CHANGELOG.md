@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/tolgee/language-util/compare/v1.1.0...v1.1.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* portugal flag ([#2](https://github.com/tolgee/language-util/issues/2)) ([92ffe0f](https://github.com/tolgee/language-util/commit/92ffe0f689b6cf34792c6f914e8c530246521439))
+
 # [1.1.0](https://github.com/tolgee/language-util/compare/v1.0.7...v1.1.0) (2024-04-16)
 
 
