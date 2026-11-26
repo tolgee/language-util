@@ -35,6 +35,17 @@ describe('generated info', () => {
     expect(result?.flags).toEqual(['🇨🇿']);
   });
 
+  test('prefers Taiwan for Traditional Chinese', () => {
+    const result = languageInfo['zh-Hant'];
+    expect(result?.regions.slice(0, 3)).toEqual(['TW', 'HK', 'MO']);
+    expect(result?.flags[0]).toEqual('🇹🇼');
+  });
+
+  test('keeps China first for Chinese without Traditional script', () => {
+    expect(languageInfo['zh'].flags[0]).toEqual('🇨🇳');
+    expect(languageInfo['zh-Hans'].flags[0]).toEqual('🇨🇳');
+  });
+
   test('returns correct languages for everything', () => {
     const result = languageInfo;
     expect(Object.keys(result).length).toBeGreaterThan(300);

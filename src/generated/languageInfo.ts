@@ -2966,8 +2966,8 @@ export const languageInfo = {
   'zh-Hant': {
     englishName: 'Traditional Chinese',
     originalName: '繁體中文',
-    regions: ['CN', 'SG', 'HK', 'MO', 'TW'],
-    flags: ['🇨🇳', '🇸🇬', '🇭🇰', '🇲🇴', '🇹🇼'],
+    regions: ['TW', 'HK', 'MO', 'CN', 'SG'],
+    flags: ['🇹🇼', '🇭🇰', '🇲🇴', '🇨🇳', '🇸🇬'],
     population: 1265387868,
   },
   'zh-Hant-HK': {
