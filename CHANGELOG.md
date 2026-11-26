@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/tolgee/language-util/compare/v1.1.1...v1.1.2) (2026-11-26)
+
+
+### Bug Fixes
+
+* use Taiwanese flag for Traditional Chinese ([#3](https://github.com/tolgee/language-util/issues/3)) ([a357b3c](https://github.com/tolgee/language-util/commit/a357b3c9c5005eada848406160e863257a2ca7cc))
+
 ## [1.1.1](https://github.com/tolgee/language-util/compare/v1.1.0...v1.1.1) (2024-04-24)
 
 
