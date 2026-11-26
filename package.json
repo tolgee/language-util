@@ -30,6 +30,7 @@
     "@formatjs/intl-locale": "^2.4.30",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^13.2.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.2",
     "@typescript-eslint/parser": "^4.26.1",
@@ -42,7 +43,7 @@
     "jest": "^27.0.4",
     "prettier": "^2.8.8",
     "pretty-quick": "^3.1.0",
-    "semantic-release": "^23.0.8",
+    "semantic-release": "^25.0.9",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
