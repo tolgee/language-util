@@ -693,7 +693,13 @@ export const getLanguageRegions = (locale: string): string[] => {
     if (!territories) {
       return [];
     }
-    return sortTerritoriesByLanguage(territories as any, parsed.lang) || [];
+    return (
+      sortTerritoriesByLanguage(
+        territories as any,
+        parsed.lang,
+        parsed.script
+      ) || []
+    );
   }
 
   return [];
@@ -714,10 +720,13 @@ function compareOfficiality(a: Officiality, b: Officiality) {
 
 const sortTerritoriesByLanguage = (
   territories: (keyof typeof territoryInfoData.supplemental.territoryInfo)[],
-  language: string
+  language: string,
+  script?: string
 ): string[] => {
   const customOrder =
-    (languageTerritoryOrder as any)[language] || ([] as string[]);
+    (script && languageTerritoryOrder[`${language}-${script}`]) ||
+    languageTerritoryOrder[language] ||
+    [];
   territories = territories.filter((t) => customOrder.indexOf(t) === -1);
   const territoriesLanguagePopulation = getTerritoriesLanguagePopulations(
     territories,
